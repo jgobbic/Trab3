@@ -1,0 +1,240 @@
+/** Trabalho 02 - Programação Orientada a Objeto - Engenharia de Computação - Main
+ Feito por João Pedro Gobbi Codognotto - 8504347
+ Linguagem Java
+**/
+import Item.*;
+
+public class Game2{
+	public static void main (String args[]){
+		
+		/**********************/
+		/****Criando itens ****/
+		/**********************/
+		
+		System.out.println("************************");
+		System.out.println("****Criando 07 Items****");
+		System.out.println("************************");
+		System.out.println();
+	
+		Weapon arma1 = new Weapon("Espada",1.2,10,3.0);
+		Weapon arma2 = new Weapon("Lanca",1.4,11,3.0);
+		
+		Armor armor1 = new Armor("Peitoral De Ferro",2.3,10,10);
+		Armor armor2 = new Armor("Peitoral De Aco",1.5,7,5);
+		
+		HealthPotion pot1 = new HealthPotion("Pequena Pocao de Vida",0.1,10);
+		HealthPotion pot2 = new HealthPotion("Grande Pocao de Vida",0.1,20);
+		ManaPotion potm1 = new ManaPotion("Pequena Pocao de Mana",0.1,10);
+		ManaPotion potm2 = new ManaPotion("Grande Pocao de Mana",0.1,20);
+		
+
+		/*********************/
+		/****Criando Chars****/
+		/*********************/
+		
+		
+		System.out.println();
+		System.out.println("************************");
+		System.out.println("*Criando os Personagens*");
+		System.out.println("************************");
+		System.out.println();
+		System.out.println();
+		
+		
+		System.out.println("Char Joao");
+		System.out.println();
+		
+		
+		Knight char1 = new Knight("Joao",3);
+		char1.setStrenght(20);
+		char1.setDexterity(40);
+		char1.setSpeed(30);
+		char1.setConstitution(10);
+		char1.earnGold(250);
+		char1.setSpaces(5);
+		char1.addXP(35);
+		char1.addPower(10);
+
+		System.out.println("###########################");
+
+		
+		
+		
+		
+		System.out.println();
+		System.out.println("Char Pedro");
+		System.out.println();
+		
+		
+		Wizard char2 = new Wizard("Pedro",1);
+		char2.setStrenght(90);
+		char2.setDexterity(4);
+		char2.setSpeed(3);
+		char2.setConstitution(3);
+		char2.earnGold(220);
+		char2.setSpaces(10);
+		char2.addXP(45);
+		char2.addWisdom(22);
+
+		System.out.println("###########################");
+
+
+		System.out.println();
+		System.out.println("Char Gobbi");
+		System.out.println();
+		
+		
+		Thief char3 = new Thief("Gobbi",2);
+		char3.setStrenght(25);
+		char3.setDexterity(25);
+		char3.setSpeed(25);
+		char3.setConstitution(25);
+		char3.earnGold(25);
+		char3.setSpaces(25);
+		char3.addXP(55);
+		char3.addStealth(33);
+
+		System.out.println("###########################");
+		
+		/*********************/
+		/**Teste de insercao**/
+		/*********************/
+		
+		
+		System.out.println("************************");
+		System.out.println("***Inserindo os Items***");
+		System.out.println("************************");
+		System.out.println();
+		
+		//Para o char João
+		System.out.println("Inserindo para Joao");
+		char1.insertItem(arma1);
+		char1.insertItem(armor1);
+		char1.insertItem(potm1);
+		char1.insertItem(pot1);
+		char1.equipWeapon(arma1.getName());
+		char1.equipArmor(armor1.getName());
+
+		System.out.println();
+		System.out.println();
+		
+		//Para o char Pedro
+		System.out.println("Inserindo para Pedro");
+//		char2.insertItem(arma2);
+//		char2.insertItem(armor2);
+//		char2.insertItem(potm2);
+//		char2.insertItem(pot2);
+//		char2.equipWeapon(arma2.getName());
+		char2.equipArmor(armor2.getName());
+		
+		System.out.println();
+		System.out.println();
+
+		//Para o char Gobbi
+		System.out.println("Inserindo para Gobbi");
+		char3.insertItem(arma1);
+		char3.insertItem(armor2);
+		char3.insertItem(potm1);
+		char3.insertItem(pot2);
+		char3.equipWeapon(arma1.getName());
+		char3.equipArmor(armor2.getName());
+		
+		System.out.println();
+		System.out.println();
+		
+		
+		/************************************************************************/
+		/**Teste do Remove*******************************************************/
+		/***************Remove usa o search, portanto ambos estão sendo testado**/
+		/************************************************************************/
+		
+		System.out.println("************************");
+		System.out.println("***Removendo os Items***");
+		System.out.println("************************");
+		
+		System.out.println();
+		
+		//Teste com item inexistente
+		char1.removeItem("Estilingue");
+		
+		System.out.println();
+		
+		//Teste com string
+	//	char3.removeItem("Espada");
+		
+		System.out.println();
+		
+		//teste com int
+		char3.removeItem(0);
+
+		
+		System.out.println();
+	
+		/**************************************************************************************************************/
+		/**Teste dos ataques*******************************************************************************************/
+		/******************Caso vida fique negativa, considerar personagem morto, pois variavel "character.morto = 1)**/
+		/**************************************************************************************************************/
+		
+		/*
+		System.out.println("************************");
+		System.out.println("**Atacando Personagens**");
+		System.out.println("************************");
+		
+		
+		System.out.println();
+		
+		//Primeiro ataque
+		System.out.println(char3.getName()+" atacacou "+char1.getName());
+		System.out.println("Dano efetuado" + char3.attackCharacter (char1));
+		System.out.println("O defensor ficou com HP: " + char1.tookDMG(0));
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
+		//Segundo ataque
+		System.out.println(char1.getName()+" atacacou "+char3.getName());
+		System.out.println("Dano efetuado" + char1.attackCharacter (char3));
+		System.out.println("O defensor ficou com HP: " + char3.tookDMG(0));
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
+		//Terceiro ataque
+		System.out.println(char3.getName()+" atacacou "+char2.getName());
+		System.out.println("Dano efetuado" + char3.attackCharacter (char2));
+		System.out.println("O defensor ficou com HP: " + char2.tookDMG(0));
+	*/
+	
+	Team t1 = new Team("Celtic",Color.green);
+	Team t2 = new Team("Mayans",Color.blue);
+	
+	t1.addChar(char1);
+	t2.addChar(char2);
+	t2.addChar(char3);
+
+	System.out.println(t1.getResults());
+	
+//	t1.resolveBattle(t2);
+	
+//	System.out.println(t1.getResults());
+	
+//	char1.attackCharacter(char2);
+	
+//	t1.resolveBattle(t2);
+	
+//	System.out.println(t1.getResults());
+	
+	char1.unequipWeapon("Espada");
+
+	System.out.println();
+
+	char1.attackCharacter(char2);
+	
+	
+	
+	}
+}
