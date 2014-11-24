@@ -1,5 +1,7 @@
 class Knight extends Character{
 	protected int power;
+	private AttackType A;
+	private AttackType Weakness;
 	
 	
 	
@@ -7,9 +9,11 @@ class Knight extends Character{
 	public Knight(String nome, int pwr){ //No driagrama construtor estava com nome errado
 	super(nome);
 	power = pwr;
+	A = AttackType.Physical; //por padrao, attacktype fisico
+	Weakness = AttackType.Fire;
 	}
 	
-	protected int getDefensePoints(){
+	public int getDefensePoints(){
 		double DEF;
 		DEF = (0.6*this.constitution + 0.1*this.dexterity + 0.3*this.speed) + item_def_points ; 
         DEF = DEF *XP;
@@ -30,7 +34,7 @@ class Knight extends Character{
 	
 	
 
-	public int attackCharacter(Character v){
+	public int attack(Entity v){
 		recalculateItems();		
 		
 	int chance =(int)( Math.random() * (10*XP));
@@ -53,6 +57,13 @@ class Knight extends Character{
 			dmg = 2*dmg;
 		System.out.println("Critico");
 		}
+		
+		if(v.getWeakness()== this.A){ //Se o seu tipo de atck for igual o tipo de fraqueza do inimigo //Nessa tipo de criatura, há um bonus ainda maior caso haja weakness no inimigo
+			dmg = dmg * 21;
+			dmg = dmg / 10;
+		System.out.println("Its Super Effective!" + dmg);
+		}
+		
 		System.out.println("Damage foi " + dmg);
 			
 		}
@@ -63,6 +74,11 @@ class Knight extends Character{
 
 	public void addPower(int v){
 	power = power + v;
+	}
+	
+	
+	public AttackType getWeakness(){
+	return Weakness;
 	}
 
 }

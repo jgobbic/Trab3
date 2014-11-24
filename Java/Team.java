@@ -8,6 +8,9 @@ public class Team{
 	private int draw;
 	private Vector<Character> characters;
 	
+	private int index;
+	private int size;
+	
 	public Team(String nome, Color cor){
 		name = nome;
 		color = cor;
@@ -16,6 +19,7 @@ public class Team{
 		draw = 0;
 		
 		characters = new Vector<Character>();
+		index = 0;
 		
 	}
 	
@@ -93,6 +97,55 @@ public class Team{
 			System.out.println(this.getName() + " empatou com " + B.getName());
 		}
 	
+	}
+	
+	/*
+	//Metodos para serem iteraveis//
+	public Iterator<Character> iterator(){
+		private int currentIndex = 0;
+		
+		public boolean hasNext(){
+			return characters.elementAt(0).hasNext();
+		}
+		
+		public Character next(){
+			currentIndex++;
+			return characters.elementAt(0);
+		
+		}
+	
+		public void remove(){}
+	};
+	return it;
+	**/
+	
+	
+	
+	public int letsBattle(Team L){
+	
+		Vector<Character> lista = this.getList();
+		Iterator<Character> itr = lista.iterator();
+		
+		Iterator<Character> itr2 = L.getList().iterator();
+		while(itr2.hasNext()){
+			letsBattle(itr2.next());
+		}
+		return 0;
+	
+	}
+	
+	public int letsBattle(Entity L){
+		Vector<Character> lista = this.getList();
+		Iterator<Character> itr = lista.iterator();
+		
+		while( itr.hasNext() ){
+			itr.next().attack(L);
+			if(L.isDead()){
+				//OQUE ACONTECE QUANDO TA MORTO
+			return 1;
+			}
+		}
+	return 0;
 	}
 	
 

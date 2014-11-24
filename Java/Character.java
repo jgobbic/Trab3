@@ -1,7 +1,7 @@
 import java.util.*;
 import Item.*;
 
-public abstract class Character{
+public abstract class Character implements Entity{
 	
 	private String alias;
 	private Inventory myitems;
@@ -51,7 +51,7 @@ public abstract class Character{
 	
 	}
 	
-	protected int getDefensePoints(){
+	public int getDefensePoints(){
 		recalculateItems();
 		double DEF;
 		DEF = (0.6*this.constitution + 0.1*this.dexterity + 0.3*this.speed) + item_def_points ; 
@@ -71,7 +71,7 @@ public abstract class Character{
 		return alias;
 	}
 	
-	public int attackCharacter(Character v){
+	public int attack(Entity v){
 		recalculateItems();		
 		
 	int chance =(int)( Math.random() * (10*XP));
@@ -118,9 +118,22 @@ public abstract class Character{
 		System.out.println("XP " + XP);
 	}
 	
+	public int releaseXp(){
+		int exp;
+		exp = XP/10;
+		if(exp<1)
+			exp=1;
+		
+		return exp;
+	}
+	
 	public void addHP(int v){
 		HP = HP + v;
 	
+	}
+	
+	public boolean isDead(){
+		return morto;
 	}
 	
 	public void addMP(int v){

@@ -1,15 +1,18 @@
 class Wizard extends Character{
 	protected int wisdom;
-	
+	private AttackType A;
+	private AttackType Weakness;
 	
 	
 	
 	public Wizard(String nome, int wsd){ //No driagrama construtor estava com nome errado
 	super(nome);
 	wisdom = wsd;
+	A = AttackType.Fire;
+	Weakness = AttackType.Physical;
 	}
 	
-	protected int getDefensePoints(){
+	public int getDefensePoints(){
 		double DEF;
 		DEF = (0.6*this.constitution + 0.1*this.dexterity + 0.3*this.speed) + item_def_points ; 
 		DEF = DEF *XP;
@@ -30,7 +33,7 @@ class Wizard extends Character{
 	
 	
 
-	public int attackCharacter(Character v){
+	public int attack(Entity v){
 		recalculateItems();		
 		
 	int chance =(int)( Math.random() * (10*XP));
@@ -53,9 +56,15 @@ class Wizard extends Character{
 			dmg = 2*dmg;
 		System.out.println("Critico");
 		}
-		System.out.println("Damage foi " + dmg);
-			
+		System.out.println("Damage foi " + dmg);	
 		}
+		
+		if(v.getWeakness()== this.A){ //Se o seu tipo de atck for igual o tipo de fraqueza do inimigo //Nessa tipo de criatura, há um bonus ainda maior caso haja weakness no inimigo
+			dmg = dmg * 21;
+			dmg = dmg / 10;
+		System.out.println("Its Super Effective!" + dmg);
+		}
+		
 	v.tookDMG(dmg);
 	return dmg;
 	}
@@ -65,4 +74,8 @@ class Wizard extends Character{
 	wisdom = wisdom + v;
 	}
 
+	
+	public AttackType getWeakness(){
+	return Weakness;
+	}
 }

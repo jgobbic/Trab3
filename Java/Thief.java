@@ -1,15 +1,18 @@
 class Thief extends Character{
 	protected int stealth;
-	
+	private AttackType A;
+	private AttackType Weakness;
 	
 	
 	
 	public Thief(String nome, int stf){ //No driagrama construtor estava com nome errado
 	super(nome);
 	stealth = stf;
+	A = AttackType.Piercing; //por padrao, attacktype fisico
+	Weakness = AttackType.Poison;
 	}
 	
-	protected int getDefensePoints(){
+	public int getDefensePoints(){
 		double DEF;
 		DEF = (0.6*this.constitution + 0.1*this.dexterity + 0.3*this.speed) + item_def_points ; 
 		DEF = DEF*XP;
@@ -30,7 +33,7 @@ class Thief extends Character{
 	
 	
 
-	public int attackCharacter(Character v){
+	public int attack(Entity v){
 		recalculateItems();		
 		
 	int chance =(int)( Math.random() * (10*XP));
@@ -56,6 +59,13 @@ class Thief extends Character{
 		System.out.println("Damage foi " + dmg);
 			
 		}
+		
+		if(v.getWeakness()== this.A){ //Se o seu tipo de atck for igual o tipo de fraqueza do inimigo //Nessa tipo de criatura, há um bonus ainda maior caso haja weakness no inimigo
+			dmg = dmg * 21;
+			dmg = dmg / 10;
+		System.out.println("Its Super Effective!" + dmg);
+		}
+		
 	v.tookDMG(dmg);
 	return dmg;
 	}
@@ -65,4 +75,8 @@ class Thief extends Character{
 	stealth = stealth + v;
 	}
 
+	
+	public AttackType getWeakness(){
+	return Weakness;
+	}
 }
