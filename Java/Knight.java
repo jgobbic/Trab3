@@ -9,8 +9,8 @@ class Knight extends Character{
 	public Knight(String nome, int pwr){ //No driagrama construtor estava com nome errado
 	super(nome);
 	power = pwr;
-	A = AttackType.Physical; //por padrao, attacktype fisico
-	Weakness = AttackType.Fire;
+	A = AttackType.Physical; //Tipo de Attack
+	Weakness = AttackType.Fire; //Fraquza, faz o personagem levar mais danos para esse tipo de ataque
 	}
 	
 	public int getDefensePoints(){
@@ -18,7 +18,6 @@ class Knight extends Character{
 		DEF = (0.6*this.constitution + 0.1*this.dexterity + 0.3*this.speed) + item_def_points ; 
         DEF = DEF *XP;
 		DEF = DEF/6;
-//		System.out.println("Defesa pts foi: " + DEF);
 		return (int)DEF + power;
 	}
 	
@@ -27,7 +26,6 @@ class Knight extends Character{
 		ATK = (0.6*this.strenght + 0.1*this.dexterity) + item_att_points; 
         ATK = ATK *XP;
 		ATK = ATK/2;
-		System.out.println("ATK pts foi: " + item_att_points);
 		return (int)ATK;
 	}
 	

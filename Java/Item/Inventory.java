@@ -23,13 +23,11 @@ public class Inventory{
 		
 		}	
 	public double getTotalGold(){
-		System.out.println("TotalGold" + gold);
 		return gold;
 	}
 	
 	public void setSpaces(int v){
 		spaces = v;
-		System.out.println("SpacesSet:"+spaces);
 	}
 	
 	public int getAvailableSpaces(){
@@ -37,16 +35,12 @@ public class Inventory{
 	}
 	
 	public double spendGold(double v){
-		System.out.println("Before"+gold);
 		gold=gold-v;
-		System.out.println("After"+gold);
 		return gold;
 	}
 	
 	public double earnGold(double v){
-		System.out.println("Before"+gold);
 		gold = gold+v;
-		System.out.println("After"+gold);
 		return gold;
 	}
 
@@ -69,7 +63,7 @@ public class Inventory{
 		}
 		else{
 			posicao_encontrado=-1;
-			System.out.println("Item nao Encontrado, portanto " + posicao_encontrado);
+			//System.out.println("Item nao Encontrado, portanto " + posicao_encontrado);
 			return null;
 		}
 	}
@@ -108,7 +102,7 @@ public class Inventory{
 			aux = Items.elementAt(posicao_encontrado).getName();
 			Items.removeElementAt(posicao_encontrado);
 		
-			System.out.println("Item "+ aux + " encontrado na posicao "+ posicao_encontrado);
+	//		System.out.println("Item "+ aux + " encontrado na posicao "+ posicao_encontrado);
 	//		System.out.println("O Item " + v + " foi removido e agora na posicao dele existe:  " + Items.elementAt(posicao_encontrado).getName() );
 		return v;
 		}

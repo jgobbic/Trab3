@@ -1,4 +1,4 @@
-public enum AttackType { //Tipos de atacks
+ public enum AttackType { //Tipos de atacks
 	
 	Fire("Fire",0),Poison("Poison",1),Physical("Physical",2),Piercing("Piercing",3); // Nome e id para facilitar identificacao
 

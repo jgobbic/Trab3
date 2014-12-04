@@ -35,7 +35,6 @@ public abstract class Character implements Entity{
 	
 	
 	private void checkSkills(){
-		//System.out.println("Skill Checking");
 		if((strenght+speed+dexterity+speed)> 100){
 			System.out.println("Soma dos skills do eh maior que 100, setando todos os skills para 25");
 			strenght=25;
@@ -103,7 +102,6 @@ public abstract class Character implements Entity{
 	
 	public int tookDMG(int v){
 		HP = HP-v;
-		System.out.println("HP" + HP);
 		if(HP<1)
 			morto=true;
 		return HP;
@@ -115,7 +113,7 @@ public abstract class Character implements Entity{
 	
 	public void addXP(int v){
 		XP = XP + v;
-		System.out.println("XP " + XP);
+		System.out.println("XP adicionada: " + v);
 	}
 	
 	public int releaseXp(){
@@ -143,25 +141,21 @@ public abstract class Character implements Entity{
 	public void setStrenght(int v){
 		strenght = v;
 		checkSkills();
-		System.out.println("STR " + strenght);
 	}
 	
 	public void setSpeed(int v){
 		speed = v;
 		checkSkills();
-		System.out.println("SPEED " + speed);
 	}
 	
 	public void setDexterity(int v){
 		dexterity= v;
 		checkSkills();
-		System.out.println("DXT " + dexterity);
 	}
 	
 	public void setConstitution(int v){
 		constitution = v;
 		checkSkills();
-		System.out.println("CONST " + constitution);
 	}
 	
 	public void earnGold(double v){
@@ -177,7 +171,6 @@ public abstract class Character implements Entity{
 	public void insertItem(Item v){
 		System.out.println("Adicionando item: " + v.getName());
 		if(myitems.insertItem(v)!=null){
-			//CALCULA O NOVO SPEED
 			double w = myitems.searchItem(v.getName()).getWeight();
 			w = Math.sqrt(w)/10;
 			w = speed * w;
@@ -220,6 +213,10 @@ public abstract class Character implements Entity{
 		return r;
 	}
 
+	public Item Drop(){
+		return null;
+	}
+	
 	//(UN)EQUIPS//
 		//Toda arma precisa ser equipada ou desequipada para ser somado (ou deixar de ser) aos itens de dano ou armadura
 		//Nao eh possivel equipar mais de 2 armas ou 1 armadura

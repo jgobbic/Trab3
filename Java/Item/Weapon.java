@@ -35,5 +35,4 @@ public class Weapon extends Item{
 		return getAttackPts();
 	}
 	
-//	public void use(){}; //Não Implementado Nesse Trabalho
 }

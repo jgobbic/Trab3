@@ -1,11 +1,13 @@
-/** Trabalho 02 - Programação Orientada a Objeto - Engenharia de Computação - Main
+/** Trabalho 03 - Programação Orientada a Objeto - Engenharia de Computação
  Feito por João Pedro Gobbi Codognotto - 8504347
  Linguagem Java
+ 2014
 **/
 import Item.*;
+import java.util.*;
 
 public class Game3{
-	public static void main (String args[]){
+	public static void main (String args[]) throws Exception{
 	
 	//CHARS//
 		System.out.println("\nCriando char1 \n");		
@@ -15,7 +17,7 @@ public class Game3{
 		char1.setSpeed(10);
 		char1.setConstitution(10);
 		char1.earnGold(0);
-		char1.setSpaces(5);
+		char1.setSpaces(6);
 		char1.addXP(2);
 		char1.addPower(10);
 		
@@ -27,7 +29,7 @@ public class Game3{
 		char2.setSpeed(10);
 		char2.setConstitution(10);
 		char2.earnGold(0);
-		char2.setSpaces(5);
+		char2.setSpaces(6);
 		char2.addXP(2);
 		char2.addPower(10);
 		
@@ -39,7 +41,7 @@ public class Game3{
 		char3.setSpeed(20);
 		char3.setConstitution(10);
 		char3.earnGold(0);
-		char3.setSpaces(5);
+		char3.setSpaces(6);
 		char3.addXP(2);
 		char3.addWisdom(10);
 		
@@ -51,7 +53,7 @@ public class Game3{
 		char5.setSpeed(10);
 		char5.setConstitution(10);
 		char5.earnGold(0);
-		char5.setSpaces(5);
+		char5.setSpaces(6);
 		char5.addXP(2);
 		char5.addPower(10);
 		
@@ -64,7 +66,7 @@ public class Game3{
 		char6.setSpeed(10);
 		char6.setConstitution(10);
 		char6.earnGold(0);
-		char6.setSpaces(5);
+		char6.setSpaces(7);
 		char6.addXP(2);
 		char6.addPower(10);
 		
@@ -77,7 +79,7 @@ public class Game3{
 		char7.setSpeed(20);
 		char7.setConstitution(10);
 		char7.earnGold(0);
-		char7.setSpaces(5);
+		char7.setSpaces(6);
 		char7.addXP(2);
 		char7.addWisdom(10);
 		
@@ -186,35 +188,69 @@ public class Game3{
 		t2.addChar(char7);
 		
 		//Criando criaturas
+		System.out.println("\nCriando Criaturas\n");
 		
-		Humanoid c1 = new Humanoid("Andre",100,10,15,15);
-		//TODO 																//ADICIONAR DROPS
+		Creature c1 = new Humanoid("Cecchimancer",100,10,15,15);
+		c1.pushDropItem(arm1,0.3); 																//ADICIONA DROP
 		
-		Mythic c2 = new Mythic("Andre",100,10,15,15);
-		//TODO 																//ADICIONAR DROPS
+		Creature c2 = new Mythic("Dragun",1,10,15,15);
+		c2.pushDropItem(arm2,0.90); 															//ADICIONA DROP
 		
+		
+		System.out.println("\nBatalha com monstro1 \n");
 		//Time 1 batalha com um monstro
 		
 		t1.letsBattle(c1);
 		
+		
+		System.out.println("\nBatalha com monstro2 \n");
 		//Time 2 batalha com um monstro
 		t2.letsBattle(c2);
 		
+		
+		
 		//Batalha entre times;
 		
-		System.out.println("\nRodada 1 da batalha \n");
+		System.out.println("\nComecem as batalhas \n");
 		//Rodada 1
-		t1.letsBattle(t2);
-		t2.letsBattle(t1);
-		
-		System.out.println("\nResultados \n");
-		t1.resolveBattle(t2);
-		t2.resolveBattle(t1);
 
 		
-		System.out.println("\nResultados finais\n");
-		System.out.println(t1.getResults() + "\n" + t2.getResults());
 		
+		//duas batalhas sendo criadas (não eh preciso chamar t1xt2 e t2xt1, no caso só foi criado para exemplificar 2 batalhas concorrentes
+		Battle b1= new Battle(t1,t2);
+		Battle b2= new Battle(t2,t1);
+		
+		Vector<Battle> battles = new Vector<Battle>();//cria um vetor de batalhas para ser executado
+		battles.add(b1);
+		battles.add(b2);
+		
+		Iterator<Battle> itrB = battles.iterator();//iterador entre as batalhas
+		Iterator<Battle> itrAux = battles.iterator();//iterador entre as batalhas auxiliar
+		
+		while(itrB.hasNext()){//começa todas as batalhas
+			itrB.next().start();
 		}
+		
+		
+		itrB = battles.iterator();//reseta o iterador
+		while(itrB.hasNext()){//faz o codigo apenas continuar depois de todas as batalhas terem terminados
+			itrB.next().join();
+		}
+		
+		Team aux1;//ponteiros de times auxiliares
+		Team aux2;
+		
+		itrB = battles.iterator(); //reseta o iterador
+		while(itrB.hasNext()){//calcula e os resultados de todas as batalhas
+			aux1 = itrB.next().getA();
+			aux2 = itrAux.next().getB();
+		
+			aux1.resolveBattle(aux2);
+			aux2.resolveBattle(aux1);
+		
+			System.out.println("\nResultados finais:\n" + aux1.getResults() + "\n" + aux2.getResults());
+		}
+		
+	}
 }
 	

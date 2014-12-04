@@ -4,12 +4,11 @@ class Wizard extends Character{
 	private AttackType Weakness;
 	
 	
-	
-	public Wizard(String nome, int wsd){ //No driagrama construtor estava com nome errado
+	public Wizard(String nome, int wsd){
 	super(nome);
 	wisdom = wsd;
-	A = AttackType.Fire;
-	Weakness = AttackType.Physical;
+	A = AttackType.Fire; //Tipo de Attack
+	Weakness = AttackType.Physical;//Fraquza, faz o personagem levar mais danos para esse tipo de ataque
 	}
 	
 	public int getDefensePoints(){
@@ -17,7 +16,6 @@ class Wizard extends Character{
 		DEF = (0.6*this.constitution + 0.1*this.dexterity + 0.3*this.speed) + item_def_points ; 
 		DEF = DEF *XP;
 		DEF = DEF/6;
-//		System.out.println("Defesa pts foi: " + DEF);
 		return (int)DEF + (wisdom)/2;
 	}
 	
@@ -26,7 +24,6 @@ class Wizard extends Character{
 		ATK = (0.6*this.strenght + 0.1*this.dexterity) + item_att_points; 
 		ATK = ATK *XP;
 		ATK = ATK/2;
-//		System.out.println("ATK pts foi: " + ATK);
 		return (int)ATK;
 	}
 	

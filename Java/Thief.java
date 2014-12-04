@@ -4,12 +4,11 @@ class Thief extends Character{
 	private AttackType Weakness;
 	
 	
-	
 	public Thief(String nome, int stf){ //No driagrama construtor estava com nome errado
 	super(nome);
 	stealth = stf;
-	A = AttackType.Piercing; //por padrao, attacktype fisico
-	Weakness = AttackType.Poison;
+	A = AttackType.Piercing; //Tipo de Attack
+	Weakness = AttackType.Poison;//Fraquza, faz o personagem levar mais danos para esse tipo de ataque
 	}
 	
 	public int getDefensePoints(){
