@@ -5,9 +5,6 @@ public class ManaPotion extends Potion {
 		super(n,v,r);
 	}
 	
-	//~ManaPotion
-
-	//**TODO**//
 	public int use(){return (-1)*getRestorePts();
 	}
 

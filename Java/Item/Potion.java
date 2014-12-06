@@ -15,9 +15,6 @@ public abstract class Potion extends Item{
 		restorepts = p.getRestorePts();
 	}
 	
-	
-	/*TODO*/
-	//public ~Potion(){} Java nao precisa de um destrutor;
 
 	public int getRestorePts(){
 		return restorepts;
